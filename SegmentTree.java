@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class SegmentTree {
 	private final int MAX_TREE = 0;		// To indicate a Segment Tree is for max values in a range
 	private final int MIN_TREE = 1;		// To indicate a Segment Tree is for min values in a range
@@ -17,7 +15,6 @@ class SegmentTree {
 	public void createMaxSegmentTree() {		// Create Segment Tree to find range max value
 		choiceCode = MAX_TREE;		
 		createSegmentTree(0, input_size - 1, 0);
-		System.out.println(Arrays.toString(tree));
 	}
 	
 	public void createMinSegmentTree() {		// Create Segment Tree to find range min value
@@ -46,17 +43,22 @@ class SegmentTree {
 			return;
 		}
 		int mid = (low + high) / 2;
-		if (index <= mid)
+		if (index <= mid) {
 			update(low, mid, 2 * root + 1, index, difference);
-		else
+		}
+		else {
 			update(mid + 1, high, 2 * root + 2, index, difference);
+		}
 	
-		if (choiceCode == MAX_TREE)
+		if (choiceCode == MAX_TREE) {
 			tree[root] = Math.max(tree[2 * root + 1], tree[2 * root + 2]);
-		else if (choiceCode == MIN_TREE)
+		}
+		else if (choiceCode == MIN_TREE) {
 			tree[root] = Math.min(tree[2 * root + 1], tree[2 * root + 2]);
-		else
+		}
+		else {
 			tree[root] += difference;
+		}
 	}
 	
 	private void createSegmentTree(int low, int high, int root) {		// Create Segment Tree
@@ -68,12 +70,15 @@ class SegmentTree {
 		createSegmentTree(low, mid, 2 * root + 1);
 		createSegmentTree(mid + 1, high, 2 * root + 2);
 		
-		if (choiceCode == MAX_TREE)
+		if (choiceCode == MAX_TREE) {
 			tree[root] = Math.max(tree[2 * root + 1], tree[2 * root + 2]);
-		else if (choiceCode == MIN_TREE)
+		}
+		else if (choiceCode == MIN_TREE) {
 			tree[root] = Math.min(tree[2 * root + 1], tree[2 * root + 2]);
-		else
+		}
+		else {
 			tree[root] = tree[2 * root + 1] + tree[2 * root + 2];
+		}
 	}
 	
 	private long getRangeResult(long[] tree, int low, int high, int l, int r, int root) {		// Helper method for getRangeResult()
@@ -81,19 +86,23 @@ class SegmentTree {
 			return tree[root];
 		}
 		if (high < l || low > r) {			// No Overlap
-			if (choiceCode == MIN_TREE)
+			if (choiceCode == MIN_TREE) {
 				return Long.MAX_VALUE;
+			}
 			return 0;
 		}
 		int mid = (high + low) / 2;
 		
 		// Partial Overlap
-		if (choiceCode == MAX_TREE)
+		if (choiceCode == MAX_TREE) {
 			return Math.max(getRangeResult(tree, low, mid, l, r, 2 * root + 1), getRangeResult(tree, mid + 1, high, l, r, 2 * root + 2));
-		else if (choiceCode == MIN_TREE)
+		}
+		else if (choiceCode == MIN_TREE) {
 			return Math.min(getRangeResult(tree, low, mid, l, r, 2 * root + 1), getRangeResult(tree, mid + 1, high, l, r, 2 * root + 2));
-		else
+		}
+		else {
 			return getRangeResult(tree, low, mid, l, r, 2 * root + 1) + getRangeResult(tree, mid + 1, high, l, r, 2 * root + 2);
+		}
 	}
 	
 	private int nextPowerOf2(int n) {		// For calculating value greater than or equal to n which is power of 2
