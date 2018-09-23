@@ -1,6 +1,6 @@
 class SinglyLinkedList<T> {
 	private int length;
-	public SinglyListNode<T> head;
+	private SinglyListNode<T> head;
 	public SinglyLinkedList() { length = 0; }
 	public SinglyLinkedList(T[] inputArray) {
 		length = 0;
