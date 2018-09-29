@@ -1,4 +1,3 @@
-package Advanced;
 /* Calculates matrix ^ power in O(log(power)). Matrix must be of size n x n. */
 
 class MatrixExponentiation {

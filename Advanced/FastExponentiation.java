@@ -1,4 +1,3 @@
-package Advanced;
 /* Calculates constant ^ power & (constant ^ power) % mod in O(log(y)) */
 
 class FastExponentiation {
