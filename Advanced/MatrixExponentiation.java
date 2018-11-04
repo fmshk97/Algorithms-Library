@@ -50,27 +50,27 @@ class MatrixExponentiation {
 	private long[][] multiplyMatrix(long matrix1[][], long matrix2[][]) {
 		long result[][] = new long[matrix1[0].length][matrix2.length];
 		
-	    for (int i = 0; i < matrix1[0].length; i++) {
-	        for (int j = 0; j < matrix1[0].length; j++) {
-	            result[i][j] = 0;
-	            for (int k = 0; k < matrix1[0].length; k++) {
-	            	result[i][j] = result[i][j] + (matrix1[i][k] * matrix2[k][j]);
+	    	for (int i = 0; i < matrix1[0].length; i++) {
+	            for (int j = 0; j < matrix1[0].length; j++) {
+	            	result[i][j] = 0;
+	            	for (int k = 0; k < matrix1[0].length; k++) {
+	            	    result[i][j] = result[i][j] + (matrix1[i][k] * matrix2[k][j]);
+	            	}
 	            }
-	        }
-	    }
+	    	}
 		return result;
 	}
 	private long[][] multiplyMatrix(long matrix1[][], long matrix2[][], long mod) {
 		long result[][] = new long[matrix1[0].length][matrix2.length];
 		
-	    for (int i = 0; i < matrix1[0].length; i++) {
-	        for (int j = 0; j < matrix1[0].length; j++) {
-	            result[i][j] = 0;
-	            for (int k = 0; k < matrix1[0].length; k++) {
-	            	result[i][j] = (result[i][j] + (matrix1[i][k] * matrix2[k][j])) % mod;
+	    	for (int i = 0; i < matrix1[0].length; i++) {
+	            for (int j = 0; j < matrix1[0].length; j++) {
+	            	result[i][j] = 0;
+	            	for (int k = 0; k < matrix1[0].length; k++) {
+	            	    result[i][j] = (result[i][j] + (matrix1[i][k] * matrix2[k][j])) % mod;
+	            	}
 	            }
-	        }
-	    }
+	    	}
 		return result;
 	}
 }
